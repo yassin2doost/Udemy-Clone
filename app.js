@@ -5,6 +5,7 @@ const
     ejs = require('ejs'),
     engine = require('ejs-mate'),
     dataBase = require('./dataBase/dataBase'),
+    generalConfig = require('./config/generalConfig'),
     mainRouter = require('./Routes/main');
     app = express();
 
@@ -13,7 +14,6 @@ const
 
 
 // Middleware goes here :)    
-
 app.use(morgan('combined'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs'); 
@@ -23,10 +23,7 @@ app.engine('ejs', engine);
 app.use(mainRouter);
 
 
-
-const port = process.env.PORT || 7777;
-
-app.listen(port, err => {
+app.listen(generalConfig.port, err => {
     if(err) throw new(err);
-    console.log(`Server is Running on ${port} :)`);
+    console.log(`Server is Running on ${generalConfig.port} :)`);
 })
