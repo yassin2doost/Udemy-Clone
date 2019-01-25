@@ -52,7 +52,7 @@ StudentSchema.pre('save',function save(next) {
 StudentSchema.methods.comparePassword =  (studentPassword, done) => {
     bcrypt.compare(studentPassword, this.password, (err, isMatch) => {
       done(err, isMatch);
-    });
+    });     
   };
 
 // Choosing default picture for better UX :)
