@@ -1,0 +1,25 @@
+{
+  "name": "udemy-clone",
+  "version": "1.0.0",
+  "description": "Udemy Clone",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yassin2doost/Udemy-Clone.git"
+  },
+  "keywords": [
+    "Udemy-Clone",
+    "Udemy",
+    "E-Learning_",
+    "websit"
+  ],
+  "author": "DDS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yassin2doost/Udemy-Clone/issues"
+  },
+  "homepage": "https://github.com/yassin2doost/Udemy-Clone#readme"
+}
