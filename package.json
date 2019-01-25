@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/yassin2doost/Udemy-Clone/issues"
   },
-  "homepage": "https://github.com/yassin2doost/Udemy-Clone#readme"
+  "homepage": "https://github.com/yassin2doost/Udemy-Clone#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
