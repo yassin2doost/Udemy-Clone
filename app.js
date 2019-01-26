@@ -12,15 +12,14 @@ const
     chalk = require('chalk'),
     helmet = require('helmet'),
     generalConfig = require('./config/generalConfig'),
-    mainRouter = require('./Routes/main');
+    mainRoute = require('./Routes/main');
+    studentRoute = require('./Routes/student');
     app = express();
-
-
-
 
 
 // Middleware goes here :)  
 app.use(helmet());  
+app.use(express.static(__dirname + '/public'));
 // app.use(session({
 //   resave: true,
 //   saveUninitialized: true,
@@ -35,20 +34,14 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs'); 
 app.engine('ejs', engine);
-app.use(mainRouter);
-
-
-
-
-
+app.set('view engine', 'ejs'); 
+app.use(mainRoute);
+app.use(studentRoute);
 
 
 
 // Error Handler.
-
 if (process.env.NODE_ENV === 'development') {
     // only use in development
     app.use(errorHandler());
@@ -59,6 +52,7 @@ if (process.env.NODE_ENV === 'development') {
     });
   }
 
+  // Asignning Port.
 app.listen(generalConfig.port, err => {
     if(err) throw new(err);
     console.log(chalk.cyan(`Server is Running on ${generalConfig.port} :)`,chalk.yellow('✓')));

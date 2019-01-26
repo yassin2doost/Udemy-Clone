@@ -1,18 +1,18 @@
 'use strict';
 const
     mongoose = require('mongoose'),
-    bcrypt = require('bcrypt-nodejs');
+    bcrypt = require('bcrypt-nodejs'),
     Schema = mongoose.Schema;
 
 
-// Creating Student Schema 
-const StudentSchema = new Schema({
+// Creating user Schema 
+const UserSchema = new Schema({
     email:{ 
         type: String,
         lowercase: true, 
-        required: [true, 'Your username cannot be blank.'],
-        trim: true,
         unique: true,
+        required: [true, 'Your email cannot be blank.'],
+        trim: true,
         dropDups: true,
         index: true,
      },
@@ -31,18 +31,34 @@ const StudentSchema = new Schema({
         website: String,
         picture: String
       },
+
+    coursesTeach: 
+    [{
+        course: { 
+            type: Schema.Types.ObjectId,
+             ref: 'course'
+            }
+    }],
+
+    courseTaken: 
+    [{
+        course: {
+            type: Schema.Types.ObjectId,
+            ref: 'course'
+        }
+    }]
 },{timestamps: true });
 
 
 // Hashing the Password with bcrypt to incease the security (pre is mongoose method)
-StudentSchema.pre('save',function save(next) {
-    const student = this;
+UserSchema.pre('save',function save(next) {
+    const user = this;
     if (!user.isModified('password')) return next()
     bcrypt.genSalt(14, (err, salt) => {
         if (err) return next(err);
         bcrypt.hash(user.password, salt, console.log('Hashing is under processing'), (err, salt) => {
             if(err) return next(err);
-            student.password = hash;
+            user.password = hash;
             next();
         });
     });
@@ -50,14 +66,14 @@ StudentSchema.pre('save',function save(next) {
 
 
 // Compare the password with the database
-StudentSchema.methods.comparePassword =  (studentPassword, done) => {
-    bcrypt.compare(studentPassword, this.password, (err, isMatch) => {
+UserSchema.methods.comparePassword =  (userPassword, done) => {
+    bcrypt.compare(userPassword, this.password, (err, isMatch) => {
       done(err, isMatch);
     });     
   };
 
 // Choosing default picture for better UX :)
-StudentSchema.methods.gravatar = function gravatar(size) {
+UserSchema.methods.gravatar = function gravatar(size) {
     if (!size) size = 200;
     if(!this.email) return `https://gravatar.com/avatar/?s=${size}&d=retro`;
     
@@ -65,4 +81,4 @@ StudentSchema.methods.gravatar = function gravatar(size) {
     return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
 }
 
-module.exports = mongoose.model('Student', StudentSchema);
+module.exports = mongoose.model('user', UserSchema);
