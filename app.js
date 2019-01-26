@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan('combined'));
+app.use(morgan('tiny'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs'); 
 app.use(mainRoute);
@@ -42,15 +42,15 @@ app.use(studentRoute);
 
 
 // Error Handler.
-if (process.env.NODE_ENV === 'development') {
-    // only use in development
-    app.use(errorHandler());
-  } else {
-    app.use((err, req, res, next) => {
-      console.error(err);
-      res.status(500).send('Server Error');
-    });
-  }
+// if (process.env.NODE_ENV === 'production') {
+//     // only use in development
+//     app.use(errorHandler());
+//   } else {
+//     app.use((err, req, res, next) => {
+//       console.error(err);
+//       res.status(500).render('./partials/error');
+//     });
+//   }
 
   // Asignning Port.
 app.listen(generalConfig.port, err => {
