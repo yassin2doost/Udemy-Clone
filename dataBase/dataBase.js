@@ -1,6 +1,8 @@
+'use strict';
 const
     mongoose = require('mongoose'),
-    generalConfig = require('../config/generalConfig')
+    generalConfig = require('../config/generalConfig'),
+    chalk = require('chalk');
 
 
 // Connecting Mongoose to data-base :)
@@ -9,9 +11,9 @@ mongoose.connect(generalConfig.databaseURI, {
     useNewUrlParser: true
 }, err => {
    if (err) {
-       console.log('Something goes wrong in connection to data-base: '+ err);
+       console.log('Something goes wrong in connection to data-base: '+ err,  chalk.red('✗'));
    } else {
-       console.log('App has connected to the data-base :)');
+       console.log(chalk.blue('App has connected to the data-base', chalk.magentaBright('✓')));
    }
 });
 
