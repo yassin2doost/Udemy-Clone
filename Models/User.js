@@ -24,6 +24,9 @@ const UserSchema = new Schema({
     passwordResetToken: String,
     passwordResetExpires: Date,
 
+    facebook:{Type: String, required:true, unique:true},
+    token: {Type: Array, required: true},
+
     profile: {
         name: String,
         gender: String,

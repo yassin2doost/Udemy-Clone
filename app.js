@@ -9,6 +9,7 @@ const
     engine = require('ejs-mate'),
     errorHandler = require('errorhandler');
     dataBase = require('./dataBase/dataBase'),
+    passport = require('passport'),
     chalk = require('chalk'),
     helmet = require('helmet'),
     generalConfig = require('./config/generalConfig'),
@@ -36,6 +37,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('tiny'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs'); 
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(mainRoute);
 app.use(studentRoute);
 
