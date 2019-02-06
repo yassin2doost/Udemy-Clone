@@ -1,6 +1,7 @@
 'use strict';
 const
     mongoose = require('mongoose'),
+    winston = require('winston'),
     generalConfig = require('../config/generalConfig'),
     chalk = require('chalk');
 
@@ -16,4 +17,3 @@ mongoose.connect(generalConfig.databaseURI, {
        console.log(chalk.blue('App has connected to the data-base', chalk.magentaBright('✓')));
    }
 });
-

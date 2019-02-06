@@ -2,6 +2,7 @@
 const
     mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
+    Joi = require('joi'),
     Schema = mongoose.Schema;
 
 
@@ -24,8 +25,8 @@ const UserSchema = new Schema({
     passwordResetToken: String,
     passwordResetExpires: Date,
 
-    facebook:{Type: String, required:true, unique:true},
-    token: {Type: Array, required: true},
+    // facebook:{Type: String, required:true, unique:true},
+    // token: {Type: Array, required: true},
 
     profile: {
         name: String,
@@ -84,4 +85,4 @@ UserSchema.methods.gravatar = function gravatar(size) {
     return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
 }
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

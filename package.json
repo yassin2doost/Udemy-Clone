@@ -33,9 +33,11 @@
     "errorhandler": "^1.5.0",
     "express": "^4.16.4",
     "helmet": "^3.15.0",
+    "joi": "^14.3.1",
     "mongoose": "^5.4.6",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
-    "passport-facebook": "^3.0.0"
+    "passport-facebook": "^3.0.0",
+    "winston": "^3.2.1"
   }
 }

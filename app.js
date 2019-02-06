@@ -3,6 +3,7 @@ const
     express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
+    winston = require('winston'),
     // MongoStore = require('connect-mongo')(session),
     compression = require('compression'),
     ejs = require('ejs'),
@@ -41,19 +42,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(mainRoute);
 app.use(studentRoute);
-
-
-
-// Error Handler.
-// if (process.env.NODE_ENV === 'production') {
-//     // only use in development
-//     app.use(errorHandler());
-//   } else {
-//     app.use((err, req, res, next) => {
-//       console.error(err);
-//       res.status(500).render('./partials/error');
-//     });
-//   }
 
   // Asignning Port.
 app.listen(generalConfig.port, err => {
