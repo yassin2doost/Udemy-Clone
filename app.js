@@ -1,24 +1,31 @@
-
+'use strict';
 const
     express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     winston = require('winston'),
+    winstonDb = require('winston-mongodb'),
     // MongoStore = require('connect-mongo')(session),
     compression = require('compression'),
     ejs = require('ejs'),
     engine = require('ejs-mate'),
-    errorHandler = require('errorhandler');
+    errorHandler = require('errorhandler'),
     dataBase = require('./dataBase/dataBase'),
     passport = require('passport'),
     chalk = require('chalk'),
     helmet = require('helmet'),
     generalConfig = require('./config/generalConfig'),
-    mainRoute = require('./Routes/main');
-    studentRoute = require('./Routes/student');
+    mainRoute = require('./Routes/main'),
+    studentRoute = require('./Routes/student'),
     app = express();
 
 
+
+winston.add(winston.transports.File, { filename: './logs/logFile.log'});
+winston.add(winston.transports.MongoDB, { 
+  useNewUrlParser: true,
+  db: generalConfig.databaseURI,
+});
 // Middleware goes here :)  
 app.use(helmet());  
 app.use(express.static(__dirname + '/public'));

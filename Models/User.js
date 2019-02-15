@@ -25,16 +25,20 @@ const UserSchema = new Schema({
     passwordResetToken: String,
     passwordResetExpires: Date,
 
-    // facebook:{Type: String, required:true, unique:true},
-    // token: {Type: Array, required: true},
+    facebook: String,
+    token:  Array,
+
+    // Define role here ... :)
 
     profile: {
         name: String,
         gender: String,
         location: String,
         website: String,
-        picture: String
+        picture: String,
+        isVerfied: {type: Boolean, default: false},
       },
+
 
     coursesTeach: 
     [{

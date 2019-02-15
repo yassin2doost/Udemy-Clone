@@ -1,9 +1,9 @@
 'use strict';
-const router = require('express').Router();
+const 
+    router = require('express').Router(),
+    mainController = require('../Controllers/mainController');
 
-router.get('/', (req, res, next) => {
-    res.render('mainPages/index.ejs');
-    res.json('welcome,studen!');
-});
+
+router.get('/', mainController.homepage);
 
 module.exports = router;
